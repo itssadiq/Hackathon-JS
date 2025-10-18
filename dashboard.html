@@ -3,12 +3,114 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="styles/global.css" />
+    <title>Dashboard</title>
     <link rel="stylesheet" href="styles/dashboard.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
   <body>
-    <link rel="stylesheet" href="scripts/dashboard.js" />
+    <!-- Mobile menu toggle -->
+    <button class="menu-toggle">☰</button>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button class="new-chat-btn"><span>+</span> New chat</button>
+
+      <div class="history-section">
+        <div class="history-item active">
+          <span>Today</span>
+        </div>
+        <div class="history-item">
+          <span>How to center a div?</span>
+        </div>
+        <div class="history-item">
+          <span>JavaScript best practices</span>
+        </div>
+        <div class="history-item">
+          <span>Python list comprehension</span>
+        </div>
+
+        <div class="history-item">
+          <span>Yesterday</span>
+        </div>
+        <div class="history-item">
+          <span>React vs Vue comparison</span>
+        </div>
+        <div class="history-item">
+          <span>CSS Grid tutorial</span>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="avatar">U</div>
+          <span>Username</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="chat-container">
+        <!-- Welcome message when no conversation is selected -->
+        <div class="welcome-container">
+          <h1 class="welcome-title">ChatGPT</h1>
+          <p>How can I help you today?</p>
+        </div>
+
+        <!-- Example conversation (hidden by default) -->
+        <div style="display: none">
+          <div class="message">
+            <div class="message-avatar user-avatar">U</div>
+            <div class="message-content">
+              <p>Hello, how are you today?</p>
+            </div>
+          </div>
+
+          <div class="message">
+            <div class="message-avatar assistant-avatar">AI</div>
+            <div class="message-content">
+              <p>
+                Hello! I'm just a computer program, so I don't have feelings,
+                but I'm functioning perfectly. How can I assist you today?
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <div class="input-wrapper">
+          <textarea
+            class="message-input"
+            placeholder="Message ChatGPT..."
+          ></textarea>
+          <button class="send-button">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M22 2L11 13"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M22 2L15 22L11 13L2 9L22 2Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts/dashboard.js" type="module"></script>
   </body>
 </html>
