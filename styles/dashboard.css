@@ -14,6 +14,7 @@ body {
   flex-direction: column;
   padding: 8px;
   transition: transform 0.3s ease;
+  z-index: 100;
 }
 
 .new-chat-btn {
@@ -50,6 +51,9 @@ body {
   cursor: pointer;
   font-size: 14px;
   margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .history-item:hover {
@@ -113,6 +117,18 @@ body {
   max-width: 48rem;
   margin: 0 auto;
   width: 100%;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .message-avatar {
@@ -125,6 +141,7 @@ body {
   justify-content: center;
   font-size: 14px;
   font-weight: bold;
+  flex-shrink: 0;
 }
 
 .user-avatar {
@@ -145,6 +162,8 @@ body {
   padding: 24px;
   display: flex;
   justify-content: center;
+  background-color: #343541;
+  border-top: 1px solid #4d4d4f;
 }
 
 .input-wrapper {
@@ -166,10 +185,12 @@ body {
   min-height: 56px;
   line-height: 1.5;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s;
 }
 
 .message-input:focus {
   outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
 }
 
 .send-button {
@@ -182,11 +203,17 @@ body {
   cursor: pointer;
   padding: 4px;
   border-radius: 4px;
+  transition: all 0.2s;
 }
 
 .send-button:hover {
   color: #ececf1;
   background-color: #1a1b20;
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .welcome-container {
@@ -203,6 +230,9 @@ body {
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 16px;
+  background: linear-gradient(90deg, #10a37f, #5436da);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .capabilities-grid {
@@ -218,6 +248,13 @@ body {
   padding: 16px;
   border-radius: 8px;
   text-align: center;
+  transition: transform 0.2s, background-color 0.2s;
+  cursor: pointer;
+}
+
+.capability-card:hover {
+  transform: translateY(-5px);
+  background-color: #4a4b5a;
 }
 
 .capability-title {
@@ -234,12 +271,90 @@ body {
   color: #d1d5db;
 }
 
+/* Chat message styles */
+.chatbox {
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.idea {
+  align-self: flex-end;
+  background-color: #5436da;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 18px 18px 4px 18px;
+  max-width: 80%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.response {
+  align-self: flex-start;
+  background-color: #444654;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 18px 18px 18px 4px;
+  max-width: 80%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.response h3 {
+  margin-bottom: 8px;
+  color: #10a37f;
+}
+
+.response p {
+  margin-bottom: 12px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8e8ea0;
+  font-style: italic;
+}
+
+.loading-dots {
+  display: inline-block;
+}
+
+.loading-dots span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #8e8ea0;
+  margin: 0 2px;
+  animation: loading 1.4s infinite ease-in-out both;
+}
+
+.loading-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.loading-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes loading {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .sidebar {
     position: absolute;
     height: 100%;
-    z-index: 10;
     transform: translateX(-100%);
   }
 
@@ -258,10 +373,18 @@ body {
     color: white;
     font-size: 20px;
     cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.2);
   }
 
   .capabilities-grid {
     grid-template-columns: 1fr;
+  }
+
+  .idea,
+  .response {
+    max-width: 90%;
   }
 }
 
@@ -269,4 +392,22 @@ body {
   .menu-toggle {
     display: none;
   }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2b2c2f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5a5b5e;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6e6f73;
 }

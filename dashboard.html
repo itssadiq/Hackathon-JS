@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles/dashboard.css" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
   <body>
     <!-- Mobile menu toggle -->
@@ -52,36 +54,41 @@
       <div class="chat-container">
         <!-- Welcome message when no conversation is selected -->
         <div class="welcome-container">
-          <h1 class="welcome-title">ChatGPT</h1>
-          <p>How can I help you today?</p>
-        </div>
+          <h1 class="welcome-title">Startup Pitch Generator</h1>
+          <p>
+            Share your startup idea and I'll create a professional pitch for
+            you!
+          </p>
 
-        <!-- Example conversation (hidden by default) -->
-        <div style="display: none">
-          <div class="message">
-            <div class="message-avatar user-avatar">U</div>
-            <div class="message-content">
-              <p>Hello, how are you today?</p>
+          <div class="capabilities-grid">
+            <div class="capability-card">
+              <div class="capability-title"><span>💡</span> Examples</div>
+              <div class="capability-description">"AI-powered fitness app"</div>
+            </div>
+            <div class="capability-card">
+              <div class="capability-title"><span>⚡</span> Capabilities</div>
+              <div class="capability-description">
+                Generates startup name, tagline, and pitch
+              </div>
+            </div>
+            <div class="capability-card">
+              <div class="capability-title"><span>🚀</span> Get Started</div>
+              <div class="capability-description">
+                Type your idea in the input below
+              </div>
             </div>
           </div>
-
-          <div class="message">
-            <div class="message-avatar assistant-avatar">AI</div>
-            <div class="message-content">
-              <p>
-                Hello! I'm just a computer program, so I don't have feelings,
-                but I'm functioning perfectly. How can I assist you today?
-              </p>
-            </div>
-          </div>
         </div>
+
+        <!-- Chat messages will be displayed here -->
+        <div class="chatbox"></div>
       </div>
 
       <div class="input-container">
         <div class="input-wrapper">
           <textarea
             class="message-input"
-            placeholder="Message ChatGPT..."
+            placeholder="Describe your startup idea..."
           ></textarea>
           <button class="send-button">
             <svg
@@ -110,7 +117,6 @@
         </div>
       </div>
     </div>
-
     <script src="scripts/dashboard.js" type="module"></script>
   </body>
 </html>

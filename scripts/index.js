@@ -15,14 +15,16 @@ document.getElementById("show-login").addEventListener("click", function () {
 // Login signup functionality
 
 const signupForm = document.getElementById("signup-form");
+const signupName = document.getElementById("signup-name");
 const signupEmail = document.getElementById("signup-email");
 const signupPass = document.getElementById("signup-password");
 
 function sendSignUpDetailstoDB() {
   const email = signupEmail.value;
   const password = signupPass.value;
+  const name = signupName.value;
 
-  registerUser(email, password);
+  registerUser(email, password, name);
 }
 
 signupForm.addEventListener("submit", (e) => {
@@ -41,7 +43,7 @@ async function userLogin() {
   try {
     const data = await loginUser(email, password);
     if (data) {
-      alert("logged in");
+      window.location.href = "dashboard.html";
     }
   } catch (error) {
     alert(error.message);
