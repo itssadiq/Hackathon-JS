@@ -7,7 +7,8 @@ async function checkAuthentication() {
     window.location.href = "index.html";
   }
 
-  console.log(data.session.user);
+  const userName = data.session.user.user_metadata.displayName;
+  document.querySelector(".userName").innerHTML = userName;
 }
 
 checkAuthentication();
@@ -57,16 +58,22 @@ function sendMessage() {
 function hideWelcomeMessage() {
   welcomeContainer.style.display = "none";
 }
-
 function addUserMessage(message) {
   chatBox.innerHTML += `
     <div class="message">
       <div class="message-avatar user-avatar">U</div>
       <div class="message-content">
         <div class="idea"><p>${message}</p></div>
+        <button class="edit-btn">Edit</button>
       </div>
     </div>
   `;
+
+  // Select only the last added button
+  const newBtn = chatBox.querySelector(".message:last-child .edit-btn");
+  newBtn.addEventListener("click", () => {
+    console.log("Edit clicked for:", message);
+  });
 }
 
 function showLoadingIndicator() {
@@ -125,7 +132,7 @@ async function generatePitch(idea) {
                   text: `You are a startup pitch assistant.
 Task: Generate a startup name, tagline, short pitch, target audience and website landing page content for the following business idea.
 If the text does not sound like a business idea, answer to text in a natural tone not more than a line and at the end, just add: "Please provide your business idea."
-
+Answer in Any Language
 Business Idea: ${idea}
 "`,
                 },
@@ -188,3 +195,5 @@ function formatPitch(pitch) {
 
   return `<p>${formattedPitch}</p>`;
 }
+
+const editbtnEl = document.querySelector(".edit-btn");

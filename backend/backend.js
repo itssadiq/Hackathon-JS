@@ -8,7 +8,9 @@ export async function registerUser(email, password, name) {
     email,
     password,
     options: {
-      displayName: name,
+      data: {
+        displayName: name,
+      },
     },
   });
 
